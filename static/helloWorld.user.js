@@ -27,11 +27,12 @@ if(typeof(dojo) != "undefined") {
                 if(!waitTime) var waitTime = 1;  // 1000=1 second
                 if(!elXpath) return;
                 var waitInter = 0;  // current interval
+
                 var intId = setInterval( function(){
                     if( ++waitInter<maxInter && !dojo.query(elXpath,elXpathRoot).length) return;
 
                     clearInterval(intId);
-                    if( waitInter >= maxInter) { 
+                    if( waitInter >= maxInter) {
                         console.log("**** WAITFOR ["+elXpath+"] WATCH EXPIRED!!! interval "+waitInter+" (max:"+maxInter+")");
                     } else {
                         console.log("**** WAITFOR ["+elXpath+"] WATCH TRIPPED AT interval "+waitInter+" (max:"+maxInter+")");
@@ -43,11 +44,9 @@ if(typeof(dojo) != "undefined") {
             // here we use waitFor to wait on the .lotusStreamTopLoading div.loaderMain.lotusHidden element
             // before we proceed to customize the page...
             waitFor( function(){
-			// wait until the "loading..." node has been hidden
-			// indicating that we have loaded content.
-   			dojo.query("span.shareSome-title")[0].textContent="Hello World! ";
-       	          },
-		  ".lotusStreamTopLoading div.loaderMain.lotusHidden");
+							// wait until the "loading..." node has been hidden indicating that we have loaded content.
+   						dojo.query("span.shareSome-title")[0].textContent="Hello World! ";
+       	    }, ".lotusStreamTopLoading div.loaderMain.lotusHidden");
       } catch(e) {
           alert("Exception occurred in helloWorld: " + e);
       }
