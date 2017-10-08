@@ -1,0 +1,23 @@
+{
+  "name": "agilite.activity",
+  "title": "Agilit-e Activity",
+  "description": "Contains logic to check for RefNo",
+  "services": [
+    "Customizer"
+  ],
+  "extensions": [
+    {
+      "payload": {
+        "include-files": [
+          "agilite.activity.js"
+        ],
+        "include-repo": {
+          "name": "customization-repo-1"
+        }
+      },
+      "name": "Agilit-e Activity Extension",
+      "type": "com.ibm.customizer.ui",
+      "path": "activities"
+    }
+  ]
+}

@@ -9,6 +9,8 @@
     {
       "payload": {
         "include-files": [
+          "dropzone.js",
+          "lodash.js",
           "agilite.core.js"
         ],
         "include-repo": {
@@ -17,7 +19,7 @@
       },
       "name": "Agilit-e Core Extension",
       "type": "com.ibm.customizer.ui",
-      "path": "*"
+      "path": "global"
     }
   ]
 }

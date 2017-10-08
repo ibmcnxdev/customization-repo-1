@@ -17,27 +17,37 @@
 //
 // ==/UserScript==
 
-var agiliteGlobals = {};
+var agiliteGlobals = {
+	userId:"",
+	communityId:"",
+	activityId:"",
+	processRequest:null,
+  waitForToDo:null,
+	waitForToDoRunning:false
+};
 
 if(typeof(dojo) != "undefined") {
-	require(["dojo/domReady!"], function(){
-    console.log("CUSTOMIZER: Initiating Script - agilite.core");
+	console.log("CUSTOMIZER: Initiating Extension - agilite.core");
 
+	//Add global function to process Node-RED transactions
+	require(["dojo/request"], function(request){
+		agiliteGlobals.processRequest = function(flowType, bodyData, callback){
+			request.post("https://agilite-node-red.eu-gb.mybluemix.net/customizer", {
+				data:bodyData,
+				headers: {"flow-type":flowType}
+			}).then(function(result){
+				callback(result);
+			});
+		}
+	});
+
+	//Initiate logic once DOM is Ready
+	require(["dojo/domReady!"], function(){
     try {
-          require(["dojo/request"], function(request){
-            agiliteGlobals.processRequest = function(flowType, bodyData, callback){
-              request.post("https://agilite-node-red.eu-gb.mybluemix.net/customizer", {
-                data:bodyData,
-                headers: {
-                  "flow-type":flowType
-                }
-              }).then(function(result){
-                callback(result);
-              });
-            }
-          });
-      } catch(e) {
-          alert("CUSTOMIZER: Exception occurred in agilite.core: " + e);
-      }
-		});
+				//Get current user's ID and add to globals
+
+    } catch(e) {
+      alert("CUSTOMIZER: Exception occurred in agilite.core: " + e);
+    }
+	});
 }
