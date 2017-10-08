@@ -1,0 +1,25 @@
+{
+  "name": "agilite.core",
+  "title": "Agilit-e Core",
+  "description": "Contains Core objects, logic and resources for Agilit-e",
+  "services": [
+    "Customizer"
+  ],
+  "extensions": [
+    {
+      "payload": {
+        "include-files": [
+          "dropzone.js",
+          "lodash.js",
+          "agilite.core.js"
+        ],
+        "include-repo": {
+          "name": "customization-repo-1"
+        }
+      },
+      "name": "Agilit-e Core Extension",
+      "type": "com.ibm.customizer.ui",
+      "path": "global"
+    }
+  ]
+}
