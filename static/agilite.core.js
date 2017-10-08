@@ -17,13 +17,8 @@
 //
 // ==/UserScript==
 
-var agiliteGlobals = {
-	userId:"",
-	communityId:"",
-	activityId:"",
-	processRequest:null,
-  waitForToDo:null,
-	waitForToDoRunning:false
+var agiliteCore = {
+	processRequest:null
 };
 
 if(typeof(dojo) != "undefined") {
@@ -31,7 +26,7 @@ if(typeof(dojo) != "undefined") {
 
 	//Add global function to process Node-RED transactions
 	require(["dojo/request"], function(request){
-		agiliteGlobals.processRequest = function(flowType, bodyData, callback){
+		agiliteCore.processRequest = function(flowType, bodyData, callback){
 			request.post("https://agilite-node-red.eu-gb.mybluemix.net/customizer", {
 				data:bodyData,
 				headers: {"flow-type":flowType}
@@ -42,12 +37,10 @@ if(typeof(dojo) != "undefined") {
 	});
 
 	//Initiate logic once DOM is Ready
-	require(["dojo/domReady!"], function(){
-    try {
-				//Get current user's ID and add to globals
-
-    } catch(e) {
-      alert("CUSTOMIZER: Exception occurred in agilite.core: " + e);
-    }
-	});
+	// require(["dojo/domReady!"], function(){
+  //   try {
+  //   } catch(e) {
+  //     alert("CUSTOMIZER: Exception occurred in agilite.core: " + e);
+  //   }
+	// });
 }

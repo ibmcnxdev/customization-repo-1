@@ -1,7 +1,7 @@
 // ==UserScript==
 // @copyright    Copyright IBM Corp. 2017
 //
-// @name         agilite.activity
+// @name         agilite.activities
 // @version      0.1
 // @description  *** PROTOTYPE CODE *** Contains logic to check for RefNo
 //
@@ -17,11 +17,16 @@
 //
 // ==/UserScript==
 
+var agiliteActivities = {
+  waitForToDo:null,
+	waitForToDoRunning:false
+};
+
 if(typeof(dojo) != "undefined") {
-	console.log("CUSTOMIZER: Initiating Extension - agilite.activity");
+	console.log("CUSTOMIZER: Initiating Extension - agilite.activities");
 
 	//Setup the Wait For loop
-	agiliteGlobals.waitForToDo = function(callback, elXpath, elXpathRoot, maxInter, waitTime) {
+	agiliteActivities.waitForToDo = function(callback, elXpath, elXpathRoot, maxInter, waitTime) {
 		if(!elXpathRoot) var elXpathRoot = dojo.body();
 		if(!maxInter) var maxInter = 10000;  // number of intervals before expiring
 		if(!waitTime) var waitTime = 1000;  // 1000=1 second
@@ -43,7 +48,7 @@ if(typeof(dojo) != "undefined") {
 	require(["dojo/domReady!"], function(){
     try {
 				//Run Wait For Loop to create RefNos in Activity Nodes
-				agiliteGlobals.waitForToDo( function(){
+				agiliteActivities.waitForToDo( function(){
 					 // Wait for custom fields in Nodes to be active
 					 dojo.query("span[id*='lconn_act_TextField']").forEach(function(row){
 						 //Find custom field with the label of RefNo
@@ -57,12 +62,12 @@ if(typeof(dojo) != "undefined") {
 
 							 //Check if Ref No = blank. If yes, generate new No and populate
 							 if(valueNode.value === ""){
-								 if(!agiliteGlobals.waitForToDoRunning){
-									 agiliteGlobals.waitForToDoRunning = true;
+								 if(!agiliteActivities.waitForToDoRunning){
+									 agiliteActivities.waitForToDoRunning = true;
 
-									 agiliteGlobals.processRequest("1", {}, function(result){
+									 agiliteCore.processRequest("1", {}, function(result){
 										 valueNode.value = result;
-										 agiliteGlobals.waitForToDoRunning = false;
+										 agiliteActivities.waitForToDoRunning = false;
 									 });
 								 }
 							 }
@@ -70,7 +75,7 @@ if(typeof(dojo) != "undefined") {
 					 });
 				 }, "form[id*='dijit_form_Form']");
     } catch(e) {
-      alert("CUSTOMIZER: Exception occurred in agilite.activity: " + e);
+      alert("CUSTOMIZER: Exception occurred in agilite.activities: " + e);
     }
-	});
+   });
 }
