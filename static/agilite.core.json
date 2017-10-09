@@ -9,6 +9,7 @@
     {
       "payload": {
         "include-files": [
+          "animate.css",
           "dropzone.js",
           "lodash.js",
           "agilite.core.js"
