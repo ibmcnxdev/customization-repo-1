@@ -1,0 +1,23 @@
+{
+  "name": "agilite.homepage",
+  "title": "Agilit-e Home Page",
+  "description": "Contains Homepage objects and logic",
+  "services": [
+    "Customizer"
+  ],
+  "extensions": [
+    {
+      "payload": {
+        "include-files": [
+          "agilite.homepage.js"
+        ],
+        "include-repo": {
+          "name": "customization-repo-1"
+        }
+      },
+      "name": "Agilit-e Homepage Extension",
+      "type": "com.ibm.customizer.ui",
+      "path": "homepage"
+    }
+  ]
+}
