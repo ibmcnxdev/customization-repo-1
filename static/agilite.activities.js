@@ -9,7 +9,7 @@
 //
 // @author       John Jardin
 //
-// @include      *://apps.collabservintegration.com/activities/service/html/*
+// @include      *://apps.collabservintegration.com/activities/*
 //
 // @exclude
 //

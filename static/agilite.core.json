@@ -9,6 +9,7 @@
     {
       "payload": {
         "include-files": [
+          "chart.js",
           "animate.css",
           "dropzone.js",
           "lodash.js",
