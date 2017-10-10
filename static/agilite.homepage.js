@@ -19,7 +19,7 @@
 
 var agiliteHomePage = {
   statusText:"",
-  defaultToneMsg:"Waiting to analyze Tone...",
+  defaultToneMsg:"Waiting to analyze tone...",
   qryInterval:2000,
   qryValue:".cke_contents.cke_reset.lconnShareboxCke.lotusTextExpanded",
   qryValue2:".lotusInlinelist.lotusLeft",
@@ -64,11 +64,15 @@ if(typeof(dojo) != "undefined") {
         agiliteHomePage.statusText = data;
       }
     }else{
-      dojo.byId("agilite_tone_result").innerHTML = agiliteHomePage.defaultToneMsg;
+      if(dojo.byId("agilite_tone_result").innerHTML !== agiliteHomePage.defaultToneMsg){
+        dojo.byId("agilite_tone_result").innerHTML = agiliteHomePage.defaultToneMsg;
+      }
+
       agiliteHomePage.statusText = "";
     }
 
     if(canProcess){
+      dojo.byId("agilite_tone_result").innerHTML = "Analyzing dominant tone...";
         agiliteCore.processRequest("2", {data:data}, function(result){
           result = JSON.parse(result);
 
@@ -81,7 +85,9 @@ if(typeof(dojo) != "undefined") {
           }
 
           if(resultText !== ""){
-            resultText = "<b>Message Tone:</b> " + resultText;
+            resultText = "Dominant Tone(s): " + resultText;
+          }else{
+            resultText = "Not enough context to analyze dominant tone of message."
           }
 
           dojo.byId("agilite_tone_result").innerHTML = resultText;
@@ -129,7 +135,8 @@ if(typeof(dojo) != "undefined") {
         //Setup div underneath Status Field for Tone Results
         agiliteHomePage.looper(function(){
           var refNode = dojo.query(agiliteHomePage.qryValue2)[0];
-          var node = '<li><div id="agilite_tone_result" style="float:right;">' + agiliteHomePage.defaultToneMsg + '</div></li>';
+          //<span style='color:#134a9f;letter-spacing: 2px;'>
+          var node = '<li><div id="agilite_tone_result" style="float:right;color:#134a9f;letter-spacing: 2px;">' + agiliteHomePage.defaultToneMsg + '</div></li>';
           dojo.place(node, refNode, "last");
         }, agiliteHomePage.qryValue2);
 
