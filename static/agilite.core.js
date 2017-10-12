@@ -27,7 +27,9 @@ if(!agilite) var agilite = {};
  *    - flowType: [STRING] - Allowed Values: "1", "2"
  *       - "1" = Generate Unique No
  *       - "2" = Analyze Message Tone
- *    - API Response
+ *    - Flow Type 1: API Response
+ *       - String e.g. "00001"
+ *    - Flow Type 2: API Response
  *       - String Array e.g. ["Value 1"] or ["Value 1", "Value 2"]
  */
 
