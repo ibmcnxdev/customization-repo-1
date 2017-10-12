@@ -27,7 +27,7 @@ agilite.suToneAnalyzer = {
   qryInterval:2000,// 1000=1 second
   qryValue:".cke_contents.cke_reset.lconnShareboxCke.lotusTextExpanded",
   qryValue2:".lotusInlinelist.lotusLeft",
-  qryExceptionText:"What do you want to share?",
+  qryExceptionText:["What do you want to share?", "Share a message with the community"]
 };
 
 if(typeof(dojo) != "undefined") {
@@ -46,7 +46,7 @@ if(typeof(dojo) != "undefined") {
       if(entry.childNodes.length > 0){
         var tmpValue = entry.childNodes[0].nodeValue;
         if(tmpValue){
-          if(tmpValue !== agilite.suToneAnalyzer.qryExceptionText){
+          if(agilite.suToneAnalyzer.qryExceptionText.indexOf(tmpValue) === -1){
             if(index > 0){
               data += " ";
             }
@@ -78,12 +78,12 @@ if(typeof(dojo) != "undefined") {
           if(!err){
             result = JSON.parse(result);
             
-            for(var x in result.tones){
+            for(var x in result){
               if(parseInt(x) > 0){
                 resultText += ", ";
               }
   
-              resultText += "<span>" + result.tones[x].tone_name + "</span>";
+              resultText += "<span>" + result[x] + "</span>";
             }
   
             if(resultText !== ""){
@@ -139,8 +139,11 @@ if(typeof(dojo) != "undefined") {
         //Setup div underneath Status Field for Tone Results
         agilite.suToneAnalyzer.looper(function(){
           var refNode = dojo.query(agilite.suToneAnalyzer.qryValue2)[0];
-          var node = '<li><div id="agilite_tone_result" style="float:right;color:#134a9f;letter-spacing: 2px;">' + agilite.suToneAnalyzer.defaultToneMsg + '</div></li>';
-          dojo.place(node, refNode, "last");
+
+          if(dojo.attr(refNode.parentNode, "class") === "lotusActions lotusMeta"){
+            var node = '<li><div id="agilite_tone_result" style="float:right;color:#134a9f;letter-spacing: 2px;">' + agilite.suToneAnalyzer.defaultToneMsg + '</div></li>';
+            dojo.place(node, refNode, "last");
+          }
         }, agilite.suToneAnalyzer.qryValue2);
 
 				//Run Looper to check if status update box is expanded

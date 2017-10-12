@@ -9,7 +9,7 @@
     {
       "payload": {
         "match": {
-          "url": "homepage|communities"
+          "url": "profiles|homepage|communities"
         },        
         "include-files": [
           "agilite.core.js",

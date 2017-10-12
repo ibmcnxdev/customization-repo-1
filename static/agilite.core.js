@@ -27,12 +27,15 @@ if(!agilite) var agilite = {};
  *    - flowType: [STRING] - Allowed Values: "1", "2"
  *       - "1" = Generate Unique No
  *       - "2" = Analyze Message Tone
+ *    - API Response
+ *       - String Array e.g. ["Value 1"] or ["Value 1", "Value 2"]
  */
 
 //Node-RED Service properties
 agilite.nodeRED = {
-	url:"https://agilite-node-red.eu-gb.mybluemix.net/customizer",//TODO: Change this to your own Node-RED Service
-	flowType:"1"
+	url:"https://agilite-public-node-red.eu-gb.mybluemix.net/customizer",
+	flowType:"1",
+	method:"POST"
 };
 
 if(typeof(dojo) != "undefined") {
@@ -52,7 +55,7 @@ if(typeof(dojo) != "undefined") {
 			headers = {"flow-type":flowType};
 			
 			args = {
-				method:"POST",
+				method:agilite.nodeRED.method,
 				data:bodyData,
 				headers:headers
 			};
