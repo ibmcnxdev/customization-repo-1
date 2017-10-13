@@ -1,0 +1,25 @@
+{
+  "extensions": [
+    {
+      "path": "activities",
+      "application": "Activity Node ID Generator",
+      "payload": {
+        "include-files": [
+          "agiliteCore.js",
+          "agiliteActivityNodeIdGenerator.js"
+        ],
+        "include-repo": {
+          "name": "customization-repo-1"
+        }
+      },
+      "name": "Activity Node ID Generator Extension",
+      "type": "com.ibm.customizer.ui"
+    }
+  ],
+  "name": "Activity Node ID Generator",
+  "description": "Contains logic to generate a readable unique id for any Activity Node",
+  "services": [
+    "Customizer"
+  ],
+  "title": "Activity Node ID Generator"  
+}
