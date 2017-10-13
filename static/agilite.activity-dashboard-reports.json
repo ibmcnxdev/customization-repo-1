@@ -1,7 +1,7 @@
 {
   "name": "agilite.activity-dashboard-reports",
   "title": "Activity Dashboard Reports",
-  "description": "Uses Chart.js to create graphical Reports in the Communitie's Rich Content widget, that reports on Open and Completed To Do items",
+  "description": "Uses Chart.js to create graphical charts in the Community's Rich Content widget, that reports on Active and Completed To Do items",
   "services": [
     "Customizer"
   ],
@@ -11,7 +11,8 @@
         "include-files": [
           "agilite.core.js",
           "chart.js",
-          "xml2json.js"
+          "xml2json.js",
+          "agilite.activity-dashboard-reports.js"
         ],
         "include-repo": {
           "name": "customization-repo-1"

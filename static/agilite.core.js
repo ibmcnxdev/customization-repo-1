@@ -17,12 +17,9 @@
 // @version      0.1
 // @author       John Jardin (Agilit-e)
 
-//Check if global Agilit-e Object is created
-if(!agilite) var agilite = {};
-
 /*
  * NOTES:
- * - Check the agilite.nodeRED object below to provide the necessary params, if any
+ * - Check the agilite_core object below to provide the necessary params, if any
  * - Tone Analyer - Execute Request: Property Rules
  *    - flowType: [STRING] - Allowed Values: "1", "2"
  *       - "1" = Generate Unique No
@@ -33,8 +30,8 @@ if(!agilite) var agilite = {};
  *       - String Array e.g. ["Value 1"] or ["Value 1", "Value 2"]
  */
 
-//Node-RED Service properties
-agilite.nodeRED = {
+//Agilit-e Core Service properties
+var agilite_core = {
 	url:"https://agilite-public-node-red.eu-gb.mybluemix.net/customizer",
 	flowType:"1",
 	method:"POST"
@@ -45,11 +42,11 @@ if(typeof(dojo) != "undefined") {
 
 	require(["dojo/request/xhr"], function(xhr){
 		//Create Execute Request for Node-RED Service
-		agilite.nodeRED.execute = function(callback, flowType, bodyData){
+		agilite_core.execute = function(callback, flowType, bodyData){
 			if(!bodyData) var bodyData = {};
-			if(!flowType) var flowType = agilite.nodeRED.flowType;
+			if(!flowType) var flowType = agilite_core.flowType;
 
-			var url = agilite.nodeRED.url;
+			var url = agilite_core.url;
 			var args = {};
 			var headers = {};
 
@@ -57,7 +54,7 @@ if(typeof(dojo) != "undefined") {
 			headers = {"flow-type":flowType};
 			
 			args = {
-				method:agilite.nodeRED.method,
+				method:agilite_core.method,
 				data:bodyData,
 				headers:headers
 			};
