@@ -18,7 +18,7 @@
 // @author       John Jardin (Agilit-e)
 
 //Extension Service properties
-agilite_suToneAnalyzer = {
+var agilite_suToneAnalyzer = {
   statusText:"",
   defaultToneMsg:"Waiting to analyze tone...",
   qryInterval:2000,// 1000=1 second
