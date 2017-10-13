@@ -19,7 +19,7 @@
     }
   ],
   "name": "Activity Dashboard Reports",
-  "description": "Uses Chart.js to create graphical charts in the Community's Rich Content widget, that reports on Active and Completed To Do items",
+  "description": "Uses Chart.js to create graphical charts in the Community's Rich Content widget, that reports on the logged in user's Active and Completed To Do items",
   "services": [
     "Customizer"
   ],
