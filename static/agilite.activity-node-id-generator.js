@@ -17,11 +17,8 @@
 // @version      0.1
 // @author       John Jardin (Agilit-e)
 
-//Check if global Agilit-e Object is created
-if(!agilite) var agilite = {};
-
 //Extension Service properties
-agilite.actIdGen = {
+var agilite_actIdGen = {
 	fieldLabel:"Ref No",//TODO: Define label of custom field to contain the generated ID. Case Sensitive!
 	loopInterval:1000,// 1000=1 second
 	looperRunning:false
@@ -31,24 +28,24 @@ if(typeof(dojo) != "undefined") {
 	console.log("Initiating Extension - activityNodeIDGenerator");
 
 	//Setup Looper to check for active Custom fields
-	agilite.actIdGen.loop = function(callback, elXpath) {
+	agilite_actIdGen.loop = function(callback, elXpath) {
 		if(!elXpath) return;
 
 		var intId = setInterval( function(){
 			if(!dojo.query(elXpath, dojo.body()).length) return;
 
 			callback();
-		}, agilite.actIdGen.loopInterval);
+		}, agilite_actIdGen.loopInterval);
 	};
 
 	require(["dojo/domReady!"], function(){
 		try {
 			//Run Looper to generate Ids if applicable
-			agilite.actIdGen.loop( function(){
+			agilite_actIdGen.loop( function(){
 				// Wait for custom fields in Nodes to be active
 				dojo.query("span[id*='lconn_act_TextField']").forEach(function(row){
 					//Find custom field by label to populate ID
-					if(row.innerHTML === agilite.actIdGen.fieldLabel){
+					if(row.innerHTML === agilite_actIdGen.fieldLabel){
 						var parentNode = row.parentNode.parentNode;
 						var valueNode = dojo.query(".fieldData", parentNode);
 
@@ -58,15 +55,15 @@ if(typeof(dojo) != "undefined") {
 
 						//Check if Custom Field = blank. If yes, generate Unique ID and populate field
 						if(valueNode.value === ""){
-							if(!agilite.actIdGen.looperRunning){
-								agilite.actIdGen.looperRunning = true;
+							if(!agilite_actIdGen.looperRunning){
+								agilite_actIdGen.looperRunning = true;
   
-								agilite.nodeRED.execute(function(err, result){
+								agilite_core.execute(function(err, result){
 									if(!err){
 										valueNode.value = result;
 									}
 									
-									agilite.actIdGen.looperRunning = false;
+									agilite_actIdGen.looperRunning = false;
 								}, "1", {});
 							}
 						}
