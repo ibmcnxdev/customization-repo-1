@@ -155,7 +155,7 @@ if(typeof(dojo) != "undefined") {
                     //Set Parent Id
                     if(entry.commUuid){
                       if(entry.commUuid.__text){
-                        newEntry.parentId = commId;
+                        newEntry.parentId = entry.commUuid.__text;
                       }
                     }
 
